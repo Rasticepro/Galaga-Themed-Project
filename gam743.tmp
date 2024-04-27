@@ -1,0 +1,83 @@
+[gd_scene load_steps=10 format=3 uid="uid://d2gi65vqk7eeu"]
+
+[ext_resource type="PackedScene" uid="uid://c2w1t4otv1sir" path="res://player.tscn" id="1_7nibb"]
+[ext_resource type="Script" path="res://game.gd" id="1_ixg5d"]
+[ext_resource type="Script" path="res://Player_Health.gd" id="3_h7via"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_njhvq"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_4tr4h"]
+
+[sub_resource type="Gradient" id="Gradient_p6uwo"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a76pr"]
+gradient = SubResource("Gradient_p6uwo")
+
+[sub_resource type="Gradient" id="Gradient_xf30k"]
+offsets = PackedFloat32Array(0.013986)
+colors = PackedColorArray(0.709804, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qef6k"]
+gradient = SubResource("Gradient_xf30k")
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_ixg5d")
+
+[node name="side borders" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="left barrier" type="CollisionShape2D" parent="side borders"]
+position = Vector2(-15, -78)
+scale = Vector2(2, 15.6)
+shape = SubResource("SegmentShape2D_njhvq")
+
+[node name="right barrier" type="CollisionShape2D" parent="side borders"]
+position = Vector2(137, -78)
+scale = Vector2(2, 15.6)
+shape = SubResource("SegmentShape2D_njhvq")
+
+[node name="enemy spawner" type="Timer" parent="."]
+autostart = true
+
+[node name="top borders" type="StaticBody2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="top barrier" type="CollisionShape2D" parent="top borders"]
+position = Vector2(-20, -81)
+rotation = -1.5708
+scale = Vector2(2, 30)
+shape = SubResource("SegmentShape2D_4tr4h")
+
+[node name="bottom barrier" type="CollisionShape2D" parent="top borders"]
+position = Vector2(-20, 81)
+rotation = -1.5708
+scale = Vector2(2, 30)
+shape = SubResource("SegmentShape2D_4tr4h")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(134, 0)
+zoom = Vector2(4, 4)
+
+[node name="Player" parent="." instance=ExtResource("1_7nibb")]
+unique_name_in_owner = true
+rotation = 1.57084
+skew = -3.82662e-05
+
+[node name="Player_Health" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -9.0
+offset_top = -80.0
+offset_right = 55.0
+offset_bottom = -16.0
+scale = Vector2(1.84623, 0.158533)
+max_value = 6.0
+value = 6.0
+texture_under = SubResource("GradientTexture2D_a76pr")
+texture_progress = SubResource("GradientTexture2D_qef6k")
+script = ExtResource("3_h7via")
+
+[connection signal="timeout" from="enemy spawner" to="." method="_on_enemy_spawner_timeout"]

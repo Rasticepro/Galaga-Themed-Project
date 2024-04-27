@@ -1,0 +1,204 @@
+[gd_scene load_steps=18 format=3 uid="uid://d2gi65vqk7eeu"]
+
+[ext_resource type="PackedScene" uid="uid://c2w1t4otv1sir" path="res://player.tscn" id="1_7nibb"]
+[ext_resource type="Script" path="res://game.gd" id="1_ixg5d"]
+[ext_resource type="Script" path="res://Player_Health.gd" id="3_h7via"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_4tr4h"]
+
+[sub_resource type="Gradient" id="Gradient_p6uwo"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a76pr"]
+gradient = SubResource("Gradient_p6uwo")
+
+[sub_resource type="Gradient" id="Gradient_xf30k"]
+offsets = PackedFloat32Array(0.013986)
+colors = PackedColorArray(0.709804, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qef6k"]
+gradient = SubResource("Gradient_xf30k")
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_njhvq"]
+b = Vector2(-7.62939e-06, 12.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ep3nx"]
+font_size = 60
+
+[sub_resource type="LabelSettings" id="LabelSettings_fluca"]
+font_size = 60
+
+[sub_resource type="LabelSettings" id="LabelSettings_pxd3w"]
+font_size = 22
+
+[sub_resource type="Gradient" id="Gradient_drkey"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uucrw"]
+gradient = SubResource("Gradient_drkey")
+
+[sub_resource type="Gradient" id="Gradient_rijji"]
+offsets = PackedFloat32Array(0, 0.997899)
+colors = PackedColorArray(0.233925, 0.233925, 0.233925, 1, 0.462291, 0.462291, 0.462291, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7b3gx"]
+gradient = SubResource("Gradient_rijji")
+
+[sub_resource type="LabelSettings" id="LabelSettings_362bl"]
+font_size = 42
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_ixg5d")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -231.0
+offset_top = -223.0
+offset_right = 950.0
+offset_bottom = -73.0
+color = Color(0.501961, 0.321569, 0.129412, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -232.0
+offset_top = -82.0
+offset_right = 949.0
+offset_bottom = -74.0
+
+[node name="enemy_layer" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="side borders" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="Game_Time" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true
+
+[node name="enemy_spawner" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[node name="top borders" type="StaticBody2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="top barrier" type="CollisionShape2D" parent="top borders"]
+position = Vector2(-144, -71)
+rotation = -1.5708
+scale = Vector2(2, 150)
+shape = SubResource("SegmentShape2D_4tr4h")
+
+[node name="bottom barrier" type="CollisionShape2D" parent="top borders"]
+position = Vector2(-144, 391)
+rotation = -1.5708
+scale = Vector2(2, 150)
+shape = SubResource("SegmentShape2D_4tr4h")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(359, 88)
+zoom = Vector2(1, 1.05)
+
+[node name="Player" parent="." instance=ExtResource("1_7nibb")]
+unique_name_in_owner = true
+position = Vector2(-121, 0)
+rotation = 1.57084
+skew = -3.82662e-05
+
+[node name="Player_Health" type="TextureProgressBar" parent="."]
+offset_left = -212.0
+offset_top = -210.0
+offset_right = -148.0
+offset_bottom = -146.0
+scale = Vector2(4.47458, 0.384225)
+max_value = 6.0
+value = 1.0
+texture_under = SubResource("GradientTexture2D_a76pr")
+texture_progress = SubResource("GradientTexture2D_qef6k")
+script = ExtResource("3_h7via")
+
+[node name="left barrier" type="CollisionShape2D" parent="."]
+position = Vector2(-148, -78)
+scale = Vector2(2, 38)
+shape = SubResource("SegmentShape2D_njhvq")
+
+[node name="Time_Elapsed" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 772.0
+offset_top = -175.0
+offset_right = 1169.0
+offset_bottom = -89.0
+scale = Vector2(0.240002, 0.240002)
+text = "Game Time: 0"
+label_settings = SubResource("LabelSettings_ep3nx")
+
+[node name="Points_Counter" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 782.0
+offset_top = -149.0
+offset_right = 1031.0
+offset_bottom = -63.0
+scale = Vector2(0.28, 0.28)
+text = "Points: 1"
+label_settings = SubResource("LabelSettings_fluca")
+
+[node name="bttn_mag_capacity" type="Button" parent="."]
+unique_name_in_owner = true
+offset_left = 264.0
+offset_top = -160.0
+offset_right = 472.0
+offset_bottom = -95.0
+text = "Higher Magazine Capacity"
+
+[node name="bttn_fire_rate" type="Button" parent="."]
+unique_name_in_owner = true
+offset_left = 128.0
+offset_top = -160.0
+offset_right = 257.0
+offset_bottom = -95.0
+text = "Faster Fire Rate"
+
+[node name="bttn_reload_speed" type="Button" parent="."]
+unique_name_in_owner = true
+offset_left = 480.0
+offset_top = -160.0
+offset_right = 645.0
+offset_bottom = -95.0
+text = "Faster Reload Speed"
+
+[node name="label_lvl_up" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 239.0
+offset_top = -217.0
+offset_right = 469.0
+offset_bottom = -183.0
+text = "Choose Your Upgrade"
+label_settings = SubResource("LabelSettings_pxd3w")
+
+[node name="bar_current_mag" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -212.0
+offset_top = -181.0
+offset_right = -172.0
+offset_bottom = -141.0
+scale = Vector2(4.48, 0.279999)
+max_value = 5.0
+value = 5.0
+texture_under = SubResource("GradientTexture2D_uucrw")
+texture_progress = SubResource("GradientTexture2D_7b3gx")
+
+[node name="label_unspent_points" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 286.0
+offset_top = -184.0
+offset_right = 690.0
+offset_bottom = -114.0
+scale = Vector2(0.36, 0.36)
+text = "Unspent Points: 1"
+label_settings = SubResource("LabelSettings_362bl")
+
+[connection signal="timeout" from="Game_Time" to="." method="_on_game_time_timeout"]
+[connection signal="timeout" from="enemy_spawner" to="." method="_on_enemy_spawner_timeout"]
+[connection signal="pressed" from="bttn_mag_capacity" to="." method="_on_bttn_mag_capacity_pressed"]
+[connection signal="pressed" from="bttn_fire_rate" to="." method="_on_bttn_fire_rate_pressed"]
+[connection signal="pressed" from="bttn_reload_speed" to="." method="_on_bttn_reload_speed_pressed"]

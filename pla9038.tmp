@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://c2w1t4otv1sir"]
+
+[ext_resource type="Texture2D" uid="uid://jhfdatpxvblx" path="res://Assets/player.png" id="1_m5b7b"]
+[ext_resource type="Script" path="res://player.gd" id="1_p8ull"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bgp1m"]
+size = Vector2(6, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3bp12"]
+size = Vector2(14, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rj8li"]
+size = Vector2(14, 2)
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(1, 0)
+rotation = 1.5708
+collision_layer = 0
+collision_mask = 24
+script = ExtResource("1_p8ull")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_m5b7b")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -7)
+collision_layer = 0
+collision_mask = 2
+
+[node name="hor_c" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_bgp1m")
+
+[node name="ver_c" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_3bp12")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_rj8li")
+
+[node name="bullet_marker" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(7.23998e-06, 2)
+
+[node name="fire_rate" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="fire_rate" to="." method="_on_fire_rate_timeout"]

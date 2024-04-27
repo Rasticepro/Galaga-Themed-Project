@@ -71,6 +71,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="enemy_fire_rate" type="Timer" parent="."]
 unique_name_in_owner = true
+one_shot = true
 
 [node name="enemy_bullet_marker" type="Marker2D" parent="."]
 unique_name_in_owner = true

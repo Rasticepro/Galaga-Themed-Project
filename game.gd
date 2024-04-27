@@ -9,10 +9,13 @@ func _ready():
 	%Time_Elapsed.set_text("Game Time: " + str(Global.Game_time))
 
 func _on_enemy_spawner_timeout():
-	enemy_spawn = Vector2(970,randi_range(-37, 350))
-	var enemy = ENEMY1.instantiate()
-	enemy.global_position = enemy_spawn
-	%enemy_layer.add_child(enemy)
+	if Global.Game_time >= 30:
+		if Global.Game_time >= 60:
+			spawn_enemy(2)	
+		else:
+			spawn_enemy(randi_range(1,2))
+	else:
+		spawn_enemy(1)
 	
 
 func _on_game_time_timeout():

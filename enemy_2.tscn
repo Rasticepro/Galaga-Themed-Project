@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dnogqjdav0oi8"]
 
-[ext_resource type="Script" path="res://enemy.gd" id="1_2h2ma"]
+[ext_resource type="Script" path="res://enemy_2.gd" id="1_fm27b"]
 [ext_resource type="Texture2D" uid="uid://d1lkm6vrxw7n5" path="res://Assets/galaga enemy2.png" id="2_huf0r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3o22o"]
@@ -30,7 +30,7 @@ rotation = -1.5708
 scale = Vector2(4, 4)
 collision_layer = 2
 collision_mask = 9
-script = ExtResource("1_2h2ma")
+script = ExtResource("1_fm27b")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_huf0r")
@@ -62,7 +62,7 @@ offset_top = -0.999961
 offset_right = 61.0
 offset_bottom = 39.0
 scale = Vector2(2.07923, 2.07923)
-max_value = 3.0
+max_value = 4.0
 value = 3.0
 rounded = true
 texture_under = SubResource("GradientTexture1D_v4scx")
@@ -71,6 +71,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="enemy_fire_rate" type="Timer" parent="."]
 unique_name_in_owner = true
+one_shot = true
 
 [node name="enemy_bullet_marker" type="Marker2D" parent="."]
 unique_name_in_owner = true

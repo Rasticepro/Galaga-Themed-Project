@@ -2,14 +2,14 @@ extends CharacterBody2D
 var enemy_dir = Vector2()
 var enemy_movepattern = "CHARGE"
 var enemy_wander_dir = randi_range(-1,1)
-var enemy_health = Global.Enemy_health_max
+var enemy_health = Global.Enemy_health_max * 2
 var enemy_can_shoot = false
 var BULLET = preload("res://enemy_bullet.tscn")
 var enemy_bullet_mags = Global.Enemy_bullet_mags
 
 func _ready():
-	%enemy_hp.value = Global.Enemy_health_max 
-	%enemy_hp.max_value = Global.Enemy_health_max
+	%enemy_hp.value = Global.Enemy_health_max * 2 
+	%enemy_hp.max_value = Global.Enemy_health_max * 2
 	
 func shoot():
 	if enemy_can_shoot and enemy_bullet_mags > 0:
@@ -56,10 +56,10 @@ func _on_dir_timeout():
 func hit():
 	enemy_health -=1
 	%enemy_hp.value = enemy_health
-	%enemy_hp.max_value = Global.Enemy_health_max
+	%enemy_hp.max_value = Global.Enemy_health_max * 2
 	
 	#check if the enemy health bar is visible
-	if !%enemy_hp.is_visible() and enemy_health < Global.Enemy_health_max:
+	if !%enemy_hp.is_visible() and enemy_health < Global.Enemy_health_max * 2:
 		%enemy_hp.show()
 		print("progrss bar shown")
 	

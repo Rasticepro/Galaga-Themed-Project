@@ -15,17 +15,17 @@ var Player_level_points = 1
 
 #Enemy Variables
 var Enemy_movespeed = 200
-var Enemy_spawn_rate = 2
+var Enemy_spawn_rate = 3
 var Enemy_health_max = 2
 var Enemy_bullet_movespeed = 300
 var Enemy_bullet_mags = 2
 var Enemy_bullet_mags_max = 2
-var Enemy_bullet_reload_time = 0.5
+var Enemy_bullet_reload_time = 2
 
 #Game Variables
 var Game_time = 0
 var Points = 0
 
-#Problem for future David.
+#WIP you lost screen for future David
 func player_died():
 	print("you died")

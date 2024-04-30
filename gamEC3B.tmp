@@ -182,8 +182,8 @@ label_settings = SubResource("LabelSettings_pxd3w")
 unique_name_in_owner = true
 offset_left = -212.0
 offset_top = -181.0
-offset_right = -148.0
-offset_bottom = -117.0
+offset_right = -172.0
+offset_bottom = -141.0
 scale = Vector2(4.48, 0.279999)
 max_value = 5.0
 value = 5.0
@@ -210,26 +210,16 @@ color = Color(0.733333, 0, 0, 1)
 [node name="label_died" type="Label" parent="."]
 unique_name_in_owner = true
 visible = false
-offset_left = 128.0
-offset_right = 1336.0
-offset_bottom = 352.0
+offset_left = 120.0
+offset_top = 40.0
+offset_right = 1328.0
+offset_bottom = 392.0
 scale = Vector2(0.360001, 0.360001)
 text = "YOU DIED"
 label_settings = SubResource("LabelSettings_m44ec")
-
-[node name="bttn_quit" type="Button" parent="."]
-unique_name_in_owner = true
-visible = false
-offset_left = 248.0
-offset_top = 127.0
-offset_right = 336.0
-offset_bottom = 158.0
-scale = Vector2(1.88, 1.88)
-text = "QUIT"
 
 [connection signal="timeout" from="Game_Time" to="." method="_on_game_time_timeout"]
 [connection signal="timeout" from="enemy_spawner" to="." method="_on_enemy_spawner_timeout"]
 [connection signal="pressed" from="bttn_mag_capacity" to="." method="_on_bttn_mag_capacity_pressed"]
 [connection signal="pressed" from="bttn_fire_rate" to="." method="_on_bttn_fire_rate_pressed"]
 [connection signal="pressed" from="bttn_reload_speed" to="." method="_on_bttn_reload_speed_pressed"]
-[connection signal="pressed" from="bttn_quit" to="." method="_on_bttn_quit_pressed"]

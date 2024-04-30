@@ -12,6 +12,7 @@ var Player_bullet_reload_time = 2
 var Player_bullet_fire_rate = .25
 var Player_level = 1
 var Player_level_points = 1
+var Player_isdead = false
 
 #Enemy Variables
 var Enemy_movespeed = 200
@@ -27,5 +28,4 @@ var Game_time = 0
 var Points = 0
 
 #WIP you lost screen for future David
-func player_died():
-	print("you died")
+

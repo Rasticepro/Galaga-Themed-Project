@@ -24,6 +24,12 @@ func _on_game_time_timeout():
 	print(Global.Game_time)
 
 func _physics_process(_delta):
+	if Global.Player_isdead:
+		%cr_died.show()
+		%label_died.show()
+		%bttn_quit.show()
+		
+		
 	%label_unspent_points.set_text("Unspent Points: " + str(Global.Player_level_points))
 	%Points_Counter.set_text("Points: " + str(Global.Points))
 	%bar_current_mag.set_value(Global.Player_mag_bullets)
@@ -49,27 +55,26 @@ func lvl_up(hs):
 		%label_unspent_points.hide()
 
 func _on_bttn_mag_capacity_pressed():
-	Global.Player_mag_capacity += 1
+	Global.Player_mag_capacity += 3
 	Global.Player_level_points -= 1
 	if Global.Player_level_points <= 0:
 		lvl_up(2)
 
 
 func _on_bttn_fire_rate_pressed():
-	Global.Player_bullet_fire_rate -= 0.02
+	Global.Player_bullet_fire_rate -= 0.04
 	Global.Player_level_points -= 1
 	if Global.Player_level_points <= 0:
 		lvl_up(2)
 
 
 func _on_bttn_reload_speed_pressed():
-	Global.Player_bullet_reload_time -= 0.1
+	Global.Player_bullet_reload_time -= 0.2
 	Global.Player_level_points -= 1
 	if Global.Player_level_points <= 0:
 		lvl_up(2)
 
 #function for spawning enemy. (T = type of enemy)
-#WIP
 func spawn_enemy(t):
 	enemy_spawn = Vector2(970,randi_range(-37, 350))
 	if t == 1:
@@ -80,3 +85,7 @@ func spawn_enemy(t):
 		var enemy = ENEMY2.instantiate()
 		enemy.global_position = enemy_spawn
 		%enemy_layer.add_child(enemy)
+
+#on quit button pressed quit the game
+func _on_bttn_quit_pressed():
+	get_tree().quit()

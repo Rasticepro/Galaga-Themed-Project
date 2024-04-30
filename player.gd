@@ -16,7 +16,7 @@ func _on_area_2d_body_entered(body):
 	body.queue_free()
 	Global.Player_health -= 1
 	if Global.Player_health <= 0:
-		Global.player_died()
+		Global.Player_isdead = true
 		queue_free()
 
 func hit():

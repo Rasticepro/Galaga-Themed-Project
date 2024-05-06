@@ -145,6 +145,16 @@ scale = Vector2(0.28, 0.28)
 text = "Points: 1"
 label_settings = SubResource("LabelSettings_fluca")
 
+[node name="Highscore_Counter" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = 782.0
+offset_top = -125.0
+offset_right = 1031.0
+offset_bottom = -39.0
+scale = Vector2(0.28, 0.28)
+text = "Highscore: 1"
+label_settings = SubResource("LabelSettings_fluca")
+
 [node name="bttn_mag_capacity" type="Button" parent="."]
 unique_name_in_owner = true
 offset_left = 264.0
@@ -220,12 +230,22 @@ label_settings = SubResource("LabelSettings_m44ec")
 [node name="bttn_quit" type="Button" parent="."]
 unique_name_in_owner = true
 visible = false
-offset_left = 248.0
-offset_top = 127.0
-offset_right = 336.0
-offset_bottom = 158.0
+offset_left = 368.0
+offset_top = 128.0
+offset_right = 456.0
+offset_bottom = 159.0
 scale = Vector2(1.88, 1.88)
 text = "QUIT"
+
+[node name="bttn_restart" type="Button" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = 152.0
+offset_top = 128.0
+offset_right = 240.0
+offset_bottom = 159.0
+scale = Vector2(1.88, 1.88)
+text = "RESTART"
 
 [connection signal="timeout" from="Game_Time" to="." method="_on_game_time_timeout"]
 [connection signal="timeout" from="enemy_spawner" to="." method="_on_enemy_spawner_timeout"]
@@ -233,3 +253,4 @@ text = "QUIT"
 [connection signal="pressed" from="bttn_fire_rate" to="." method="_on_bttn_fire_rate_pressed"]
 [connection signal="pressed" from="bttn_reload_speed" to="." method="_on_bttn_reload_speed_pressed"]
 [connection signal="pressed" from="bttn_quit" to="." method="_on_bttn_quit_pressed"]
+[connection signal="pressed" from="bttn_restart" to="." method="_on_bttn_restart_pressed"]

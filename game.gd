@@ -4,9 +4,14 @@ extends Node2D
 @onready var ENEMY1 = preload("res://enemy.tscn")
 var enemy_spawn = Vector2(840,randi_range(-38, 350))
 func _ready():
+	
+	reset_vars()
+	#Enemy Spawner
 	%enemy_spawner.set_wait_time(Global.Enemy_spawn_rate)
 	%enemy_spawner.start()
 	%Time_Elapsed.set_text("Game Time: " + str(Global.Game_time))
+	%Highscore_Counter.set_text("Highscore: " + str(Global.Session_highscore))
+	
 
 func _on_enemy_spawner_timeout():
 	if Global.Game_time >= 30:
@@ -28,6 +33,11 @@ func _physics_process(_delta):
 		%cr_died.show()
 		%label_died.show()
 		%bttn_quit.show()
+		%bttn_restart.show()
+		
+	if Global.Session_highscore < Global.Points:
+		Global.Session_highscore = Global.Points
+		%Highscore_Counter.set_text("Highscore: " + str(Global.Points))
 		
 		
 	%label_unspent_points.set_text("Unspent Points: " + str(Global.Player_level_points))
@@ -89,3 +99,39 @@ func spawn_enemy(t):
 #on quit button pressed quit the game
 func _on_bttn_quit_pressed():
 	get_tree().quit()
+
+func _on_bttn_restart_pressed():
+	get_tree().reload_current_scene()
+
+
+
+func reset_vars():
+	#reset Player Variables for game start
+	Global.Player_movespeed = Global.const_Player_movespeed
+	Global.Player_health = Global.const_Player_health
+	Global.Player_health_max = Global.const_Player_health_max
+	Global.Player_bullet_movespeed = Global.const_Player_bullet_movespeed
+	Global.Player_bullet_health = Global.const_Player_bullet_health
+	Global.Player_mag_bullets = Global.const_Player_mag_bullets
+	Global.Player_mag_capacity = Global.const_Player_mag_capacity
+	Global.Player_bullet_reload_time = Global.const_Player_bullet_reload_time
+	Global.Player_bullet_fire_rate = Global.const_Player_bullet_fire_rate
+	Global.Player_level = Global.const_Player_level
+	Global.Player_level_points = Global.const_Player_level_points
+	Global.Player_isdead = Global.const_Player_isdead
+	
+	#reset Enemy Variables for game start
+	Global.Enemy_movespeed = Global.const_Enemy_movespeed
+	Global.Enemy_spawn_rate = Global.const_Enemy_spawn_rate
+	Global.Enemy_health_max = Global.const_Enemy_health_max
+	Global.Enemy_bullet_movespeed = Global.const_Enemy_bullet_movespeed
+	Global.Enemy_bullet_mags = Global.const_Enemy_bullet_mags
+	Global.Enemy_bullet_mags_max = Global.const_Enemy_bullet_mags_max
+	Global.Enemy_bullet_reload_time = Global.const_Enemy_bullet_reload_time
+	
+	#Reset Game Variables
+	Global.Game_time = Global.const_Game_time
+	Global.Points = Global.const_Points
+	
+
+

@@ -136,10 +136,10 @@ func reset_vars():
 
 
 func save_data():
-	var file = FileAccess.open("res://galagatest.txt", FileAccess.WRITE)
+	var file = FileAccess.open("res://galaga.data", FileAccess.WRITE)
 	file.store_float(Global.Highscore)
 
 
 func get_data():
-	var file = FileAccess.open("res://galagatest.txt", FileAccess.READ)
+	var file = FileAccess.open("res://galaga.data", FileAccess.READ)
 	Global.Highscore = file.get_float()

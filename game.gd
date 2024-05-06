@@ -4,13 +4,13 @@ extends Node2D
 @onready var ENEMY1 = preload("res://enemy.tscn")
 var enemy_spawn = Vector2(840,randi_range(-38, 350))
 func _ready():
-	
 	reset_vars()
+	get_data()
 	#Enemy Spawner
 	%enemy_spawner.set_wait_time(Global.Enemy_spawn_rate)
 	%enemy_spawner.start()
 	%Time_Elapsed.set_text("Game Time: " + str(Global.Game_time))
-	%Highscore_Counter.set_text("Highscore: " + str(Global.Session_highscore))
+	%Highscore_Counter.set_text("Highscore: " + str(Global.Highscore))
 	
 
 func _on_enemy_spawner_timeout():
@@ -30,13 +30,14 @@ func _on_game_time_timeout():
 
 func _physics_process(_delta):
 	if Global.Player_isdead:
+		save_data()
 		%cr_died.show()
 		%label_died.show()
 		%bttn_quit.show()
 		%bttn_restart.show()
 		
-	if Global.Session_highscore < Global.Points:
-		Global.Session_highscore = Global.Points
+	if Global.Highscore < Global.Points:
+		Global.Highscore = Global.Points
 		%Highscore_Counter.set_text("Highscore: " + str(Global.Points))
 		
 		
@@ -132,6 +133,13 @@ func reset_vars():
 	#Reset Game Variables
 	Global.Game_time = Global.const_Game_time
 	Global.Points = Global.const_Points
-	
 
 
+func save_data():
+	var file = FileAccess.open("res://galagatest.txt", FileAccess.WRITE)
+	file.store_float(Global.Highscore)
+
+
+func get_data():
+	var file = FileAccess.open("res://galagatest.txt", FileAccess.READ)
+	Global.Highscore = file.get_float()

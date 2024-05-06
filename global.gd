@@ -53,4 +53,5 @@ var Enemy_bullet_reload_time
 #Game Variables
 var Game_time
 var Points
-var Session_highscore = 0
+var Highscore = 0
+var Data

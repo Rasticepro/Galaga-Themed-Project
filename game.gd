@@ -154,8 +154,11 @@ func save_data():
 
 
 func get_data():
-	var file = FileAccess.open("res://galaga.data", FileAccess.READ_WRITE)
-	Global.Highscore = file.get_float()
+	if FileAccess.file_exists("res://galaga.data"):
+		var file = FileAccess.open("res://galaga.data", FileAccess.WRITE_READ)
+		Global.Highscore = file.get_float()
+	else:
+		var file = FileAccess.open("res://galaga.data", FileAccess.WRITE)
 
 func sfx_power_up():
 	if sfx_power_up_num == 1:

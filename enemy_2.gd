@@ -13,6 +13,7 @@ func _ready():
 	
 func shoot():
 	if enemy_can_shoot and enemy_bullet_mags > 0:
+		$sfx_shoot.play()
 		enemy_bullet_mags -= 1
 		enemy_can_shoot = false
 		%enemy_fire_rate.set_wait_time(Global.Enemy_bullet_reload_time)
@@ -65,6 +66,7 @@ func hit():
 	
 	#if enemy health is lower than or equal to 0 then remove enemy from game
 	if enemy_health <= 0:
+		Global.Enemy_died = true
 		print("died")
 		Global.Points +=1
 		queue_free()

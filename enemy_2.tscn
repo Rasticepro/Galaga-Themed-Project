@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dnogqjdav0oi8"]
+[gd_scene load_steps=11 format=3 uid="uid://dnogqjdav0oi8"]
 
 [ext_resource type="Script" path="res://enemy_2.gd" id="1_fm27b"]
 [ext_resource type="Texture2D" uid="uid://d1lkm6vrxw7n5" path="res://Assets/galaga enemy2.png" id="2_huf0r"]
+[ext_resource type="AudioStream" uid="uid://7l8y2f5phsxn" path="res://Assets/Enemy_Shoot.ogg" id="3_a7ld0"]
+[ext_resource type="AudioStream" uid="uid://172cwfm02jy2" path="res://Assets/Enemy_Died.ogg" id="4_74fja"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3o22o"]
 size = Vector2(14, 6)
@@ -82,6 +84,12 @@ rotation = 1.5708
 wait_time = 0.5
 one_shot = true
 autostart = true
+
+[node name="sfx_shoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_a7ld0")
+
+[node name="sfx_died" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_74fja")
 
 [connection signal="timeout" from="patience" to="." method="_on_patience_timeout" flags=18]
 [connection signal="timeout" from="dir" to="." method="_on_dir_timeout" flags=18]

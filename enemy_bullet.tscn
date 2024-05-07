@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcd5fc80ide05"]
+[gd_scene load_steps=6 format=3 uid="uid://bcd5fc80ide05"]
 
 [ext_resource type="Script" path="res://enemy_bullet.gd" id="1_ieioa"]
 [ext_resource type="Texture2D" uid="uid://b7sdlaiv2g63r" path="res://Assets/galagabullet1.png" id="2_bqpes"]
+[ext_resource type="AudioStream" uid="uid://7l8y2f5phsxn" path="res://Assets/Enemy_Shoot.ogg" id="3_6egvp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gggfb"]
 size = Vector2(2, 1)
@@ -37,5 +38,8 @@ shape = SubResource("RectangleShape2D_gggfb")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6.5)
 shape = SubResource("RectangleShape2D_ctsbq")
+
+[node name="sfx_shoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6egvp")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered" flags=18]

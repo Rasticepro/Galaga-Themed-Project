@@ -65,9 +65,12 @@ func hit():
 	
 	#if enemy health is lower than or equal to 0 then remove enemy from game
 	if enemy_health <= 0:
-		print("died")
+		Global.Enemy_died = true
 		Global.Points +=1
+		
 		queue_free()
+	elif enemy_health > 0:
+		$sfx_hit.play()
 
 
 

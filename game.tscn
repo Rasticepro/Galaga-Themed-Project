@@ -1,8 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://d2gi65vqk7eeu"]
+[gd_scene load_steps=24 format=3 uid="uid://d2gi65vqk7eeu"]
 
 [ext_resource type="PackedScene" uid="uid://c2w1t4otv1sir" path="res://player.tscn" id="1_7nibb"]
 [ext_resource type="Script" path="res://game.gd" id="1_ixg5d"]
 [ext_resource type="Script" path="res://Player_Health.gd" id="3_h7via"]
+[ext_resource type="AudioStream" uid="uid://bleltncra7gbb" path="res://Assets/powerUp1.wav" id="4_7sj82"]
+[ext_resource type="AudioStream" uid="uid://b88s06xejsu3c" path="res://Assets/powerUp2.wav" id="5_00ns6"]
+[ext_resource type="AudioStream" uid="uid://cgi2puh0oespx" path="res://Assets/powerUp3.wav" id="6_60tqu"]
+[ext_resource type="AudioStream" uid="uid://172cwfm02jy2" path="res://Assets/Enemy_Died.ogg" id="7_r4ava"]
+[ext_resource type="AudioStream" uid="uid://de51uqf6fut0f" path="res://Assets/Player_Died.ogg" id="8_spcjm"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_4tr4h"]
 
@@ -246,6 +251,21 @@ offset_right = 240.0
 offset_bottom = 159.0
 scale = Vector2(1.88, 1.88)
 text = "RESTART"
+
+[node name="sfx_powerup1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_7sj82")
+
+[node name="sfx_powerup2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_00ns6")
+
+[node name="sfx_powerup3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_60tqu")
+
+[node name="sfx_enemy_died" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_r4ava")
+
+[node name="sfx_player_died" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_spcjm")
 
 [connection signal="timeout" from="Game_Time" to="." method="_on_game_time_timeout"]
 [connection signal="timeout" from="enemy_spawner" to="." method="_on_enemy_spawner_timeout"]

@@ -17,7 +17,11 @@ func _on_area_2d_body_entered(body):
 	Global.Player_health -= 1
 	if Global.Player_health <= 0:
 		Global.Player_isdead = true
+		Global.Player_death_sound = true
+		$sfx_died.play()
 		queue_free()
+	elif Global.Player_health > 0:
+		$sfx_hit.play()
 
 func hit():
 	print("player hit")

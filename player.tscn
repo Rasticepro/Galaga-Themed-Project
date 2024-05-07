@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2w1t4otv1sir"]
+[gd_scene load_steps=8 format=3 uid="uid://c2w1t4otv1sir"]
 
 [ext_resource type="Texture2D" uid="uid://jhfdatpxvblx" path="res://Assets/player.png" id="1_m5b7b"]
 [ext_resource type="Script" path="res://player.gd" id="1_p8ull"]
+[ext_resource type="AudioStream" uid="uid://de51uqf6fut0f" path="res://Assets/Player_Died.ogg" id="3_hohv2"]
+[ext_resource type="AudioStream" uid="uid://blqfpyv7uvc5m" path="res://Assets/Player_Hit.ogg" id="4_kmuhx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bgp1m"]
 size = Vector2(6, 10)
@@ -51,6 +53,12 @@ one_shot = true
 unique_name_in_owner = true
 wait_time = 2.0
 one_shot = true
+
+[node name="sfx_died" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_hohv2")
+
+[node name="sfx_hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_kmuhx")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="reload_time" to="." method="_on_reload_time_timeout"]

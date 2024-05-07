@@ -13,6 +13,7 @@ var Player_bullet_fire_rate
 var Player_level
 var Player_level_points
 var Player_isdead
+var Player_death_sound = false
 
 #Player Reset Variables
 const const_Player_movespeed = 400
@@ -49,6 +50,7 @@ var Enemy_bullet_movespeed
 var Enemy_bullet_mags
 var Enemy_bullet_mags_max
 var Enemy_bullet_reload_time
+var Enemy_died = false
 
 #Game Variables
 var Game_time

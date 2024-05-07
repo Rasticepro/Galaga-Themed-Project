@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+func _ready():
+	$sfx_shoot.play()
 
 func _physics_process(_delta):
 	velocity = Vector2(1,0) * Global.Player_bullet_movespeed

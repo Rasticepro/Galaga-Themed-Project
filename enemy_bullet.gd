@@ -1,7 +1,10 @@
 extends CharacterBody2D
 
+#func _ready():
+	#$sfx_shoot.play()
+
 func _physics_process(_delta):
-	velocity = Vector2(-1,0) * Global.Enemy_bullet_movespeed
+	velocity = Vector2(-1,0) * Global.Enemy_bullet_movespeed 
 	move_and_slide()
 
 

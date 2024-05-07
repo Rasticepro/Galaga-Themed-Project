@@ -1,5 +1,5 @@
 extends Node2D
-
+var sfx_power_up_num = 1
 @onready var ENEMY2 = preload("res://enemy_2.tscn")
 @onready var ENEMY1 = preload("res://enemy.tscn")
 var enemy_spawn = Vector2(840,randi_range(-38, 350))
@@ -29,6 +29,15 @@ func _on_game_time_timeout():
 	print(Global.Game_time)
 
 func _physics_process(_delta):
+	
+	if Global.Player_death_sound == true:
+		Global.Player_death_sound = false
+		$sfx_player_died.play()
+	
+	if Global.Enemy_died:
+		$sfx_enemy_died.play()
+		Global.Enemy_died = false
+	
 	if Global.Player_isdead:
 		save_data()
 		%cr_died.show()
@@ -66,6 +75,7 @@ func lvl_up(hs):
 		%label_unspent_points.hide()
 
 func _on_bttn_mag_capacity_pressed():
+	sfx_power_up()
 	Global.Player_mag_capacity += 3
 	Global.Player_level_points -= 1
 	if Global.Player_level_points <= 0:
@@ -73,6 +83,7 @@ func _on_bttn_mag_capacity_pressed():
 
 
 func _on_bttn_fire_rate_pressed():
+	sfx_power_up()
 	Global.Player_bullet_fire_rate -= 0.04
 	Global.Player_level_points -= 1
 	if Global.Player_level_points <= 0:
@@ -80,6 +91,7 @@ func _on_bttn_fire_rate_pressed():
 
 
 func _on_bttn_reload_speed_pressed():
+	sfx_power_up()
 	Global.Player_bullet_reload_time -= 0.2
 	Global.Player_level_points -= 1
 	if Global.Player_level_points <= 0:
@@ -136,10 +148,21 @@ func reset_vars():
 
 
 func save_data():
+	
 	var file = FileAccess.open("res://galaga.data", FileAccess.WRITE)
 	file.store_float(Global.Highscore)
 
 
 func get_data():
-	var file = FileAccess.open("res://galaga.data", FileAccess.READ)
+	var file = FileAccess.open("res://galaga.data", FileAccess.READ_WRITE)
 	Global.Highscore = file.get_float()
+
+func sfx_power_up():
+	if sfx_power_up_num == 1:
+		$sfx_powerup1.play()
+	elif sfx_power_up_num == 2:
+		$sfx_powerup2.play()
+	elif sfx_power_up_num == 3:
+		$sfx_powerup3.play()
+	sfx_power_up_num += 1
+	

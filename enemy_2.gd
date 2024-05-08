@@ -13,7 +13,6 @@ func _ready():
 	
 func shoot():
 	if enemy_can_shoot and enemy_bullet_mags > 0:
-		$sfx_shoot.play()
 		enemy_bullet_mags -= 1
 		enemy_can_shoot = false
 		%enemy_fire_rate.set_wait_time(Global.Enemy_bullet_reload_time)

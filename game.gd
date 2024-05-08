@@ -157,9 +157,6 @@ func get_data():
 	if FileAccess.file_exists("res://galaga.data"):
 		var file = FileAccess.open("res://galaga.data", FileAccess.WRITE_READ)
 		Global.Highscore = file.get_float()
-	else:
-		var file = FileAccess.open("res://galaga.data", FileAccess.WRITE)
-
 func sfx_power_up():
 	if sfx_power_up_num == 1:
 		$sfx_powerup1.play()
